@@ -1,0 +1,8 @@
+{
+  "appName": "Task Board",
+  "somethingWentWrong": "Что-то пошло не так",
+  "loading": "Загрузка...",
+  "error": "Ошибка",
+  "noData": "Данные недоступны",
+  "unknownError": "Неизвестная ошибка"
+}
