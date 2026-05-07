@@ -53,7 +53,7 @@ export default function BlockedUsers() {
             {users.map((user) => (
               <Card
                 key={user.id}
-                className="shadow-sm hover:shadow-md transition border border-[#D9DFE4]"
+                className="shadow-sm hover:shadow-md transition border border-pureSilicon"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">

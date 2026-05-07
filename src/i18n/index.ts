@@ -11,9 +11,9 @@ import ruBlock from "./locales/ru/block.json";
 import ruCommon from "./locales/ru/common.json";
 import ruTasks from "./locales/ru/tasks.json";
 import uzAuth from "./locales/uz/auth.json";
+import uzBlock from "./locales/uz/block.json";
 import uzCommon from "./locales/uz/common.json";
 import uzTasks from "./locales/uz/tasks.json";
-import uzBlock from "./locales/uz/tasks.json";
 
 const resources = {
   en: {

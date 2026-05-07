@@ -1,6 +1,6 @@
 {
     "block": "Блок",
-    "blockUser": "Заблокировать",
+    "blockUser": "Блокировать",
     "blockUserDescription": "Выберите пользователя и укажите причину",
     "noBlockedUsers": "Нет заблокированных пользователей",
     "noBlockedUsersDescription": "Вы еще не заблокировали ни одного пользователя.",

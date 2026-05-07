@@ -50,7 +50,7 @@ export default function Modal({
         ${open ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
       >
         {(title || description) && (
-          <div className="flex items-start justify-between p-5 border-b border-[#D9DFE4]">
+          <div className="flex items-start justify-between p-5 border-b border-pureSilicon">
             <div>
               {title && (
                 <h2 className="text-lg font-semibold text-gray-800">{title}</h2>

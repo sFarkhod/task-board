@@ -1,5 +1,5 @@
 import { LogOut } from "lucide-react";
-import { useEffect,useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthStore } from "@/store/authStore";
@@ -14,9 +14,7 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  if (!user) return null;
-
-  const firstLetter = user.nickname.charAt(0).toUpperCase();
+  const firstLetter = user?.nickname.charAt(0).toUpperCase();
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -34,6 +32,8 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
     navigate("/login");
   };
 
+  if (!user) return null;
+
   return (
     <div className="relative" ref={ref}>
       <div
@@ -50,7 +50,7 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
       </div>
 
       <div
-        className={`absolute right-0 mt-2 w-56 bg-white border border-[#D9DFE4] rounded-lg shadow-lg p-3
+        className={`absolute right-0 mt-2 w-56 bg-white border border-pureSilicon rounded-lg shadow-lg p-3
         transition-all duration-200 origin-top-right
         ${
           open
@@ -69,7 +69,7 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
           )}
         </div>
 
-        <div className="border-t border-[#D9DFE4] pt-3">
+        <div className="border-t border-pureSilicon pt-3">
           <Button
             onClick={handleLogout}
             variant="danger"
