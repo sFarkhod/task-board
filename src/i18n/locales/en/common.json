@@ -10,5 +10,7 @@
     "selectUser": "Select user",
     "charactersLeft": "characters left",
     "cancel": "Cancel",
-    "logout": "Logout"
+    "logout": "Logout",
+    "404": "Page not found",
+    "goBackHome": "Go back home"
 }

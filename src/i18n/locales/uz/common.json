@@ -10,5 +10,7 @@
   "selectUser": "Foydalanuvchini tanlang",
   "charactersLeft": "belgilar qoldi",
   "cancel": "Bekor qilish",
-  "logout": "Chiqish"
+  "logout": "Chiqish",
+  "404": "Sahifa topilmadi",
+  "goBackHome": "Bosh sahifaga qaytish"
 }

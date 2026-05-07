@@ -2,6 +2,8 @@ import { LayoutGrid, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
+import { sidebarItems } from "./SidebarItems";
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -9,6 +11,7 @@ interface Props {
 
 export default function MobileSidebar({ isOpen, onClose }: Props) {
   const { t } = useTranslation("common");
+
   return (
     <div
       className={`fixed inset-0 z-50 ${
@@ -37,28 +40,28 @@ export default function MobileSidebar({ isOpen, onClose }: Props) {
         </div>
 
         <nav className="flex flex-col gap-2">
-          <NavLink
-            to="/"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `px-3 py-2 rounded ${
-                isActive ? "bg-gray-800" : "hover:bg-gray-800"
-              }`
-            }
-          >
-            {t("board")}
-          </NavLink>
-          <NavLink
-            to="/blocked"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `px-3 py-2 rounded transition ${
-                isActive ? "bg-gray-800" : "hover:bg-gray-800"
-              }`
-            }
-          >
-            {t("blockedUsers")}
-          </NavLink>
+          {sidebarItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `
+                          flex items-center gap-3
+                          px-3 py-2 rounded transition
+                          ${isActive ? "bg-gray-800" : "hover:bg-gray-800"}
+                        `
+                }
+              >
+                <Icon size={18} />
+
+                <span>{t(item.label)}</span>
+              </NavLink>
+            );
+          })}
         </nav>
       </div>
     </div>

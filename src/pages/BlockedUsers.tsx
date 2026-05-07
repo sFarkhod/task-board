@@ -9,8 +9,11 @@ import Modal from "@/components/ui/Modal";
 import Spinner from "@/components/ui/Spinner";
 import { useBlockedUsers } from "@/features/block/hooks/useBlockedUsers";
 import { useUnblockUser } from "@/features/block/hooks/useUnblockUser";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function BlockedUsers() {
+  usePageTitle("blockedUsers");
+  
   const { t } = useTranslation("block");
   const { data: users, loading, refetch } = useBlockedUsers();
   const { unblock } = useUnblockUser();

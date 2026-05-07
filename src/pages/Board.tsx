@@ -5,10 +5,11 @@ import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
 import Textarea from "@/components/ui/Textarea";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
-type Props = {};
+export default function Board() {
+  usePageTitle("board");
 
-export default function Board({}: Props) {
   const [open, setOpen] = useState(false);
 
   return (
