@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { registerUser } from "../auth.service";
 import { useNavigate } from "react-router-dom";
+
 import { useAuthStore } from "@/store/authStore";
+
+import { registerUser } from "../auth.service";
 import type { RegisterFormData } from "../schema";
 
 export function useRegister() {

@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+
+import MainLayout from "@/layouts/MainLayout";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
-import Board from "@/pages/Board";
-import MainLayout from "@/layouts/MainLayout";
-import NotFound from "@/pages/NotFound";
-import { ProtectedRoute } from "./protectedRoute";
-import { GuestRoute } from "./guestRoute";
 import BlockedUsers from "@/pages/BlockedUsers";
+import Board from "@/pages/Board";
+import NotFound from "@/pages/NotFound";
+
+import { GuestRoute } from "./guestRoute";
+import { ProtectedRoute } from "./protectedRoute";
 
 export const router = createBrowserRouter([
   {

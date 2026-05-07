@@ -1,7 +1,9 @@
+import { toast } from "react-toastify";
+
 import { loginRequest, registerRequest } from "@/api/auth";
 import { getApiErrorMessage } from "@/api/handleApiError";
+
 import type { RegisterFormData } from "./schema";
-import { toast } from "react-toastify";
 
 export async function registerUser(data: RegisterFormData) {
   try {

@@ -1,5 +1,6 @@
-import { api } from "./axios";
 import type { AuthResponse } from "@/types/auth";
+
+import { api } from "./axios";
 
 export const loginRequest = (data: { nickname: string; password: string }) =>
   api.post<AuthResponse>("/auth/login", data);

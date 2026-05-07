@@ -1,12 +1,14 @@
-import { useState } from "react";
-import Button from "@/components/ui/Button";
-import Modal from "@/components/ui/Modal";
-import BlockUserModal from "@/components/blocked/ BlockUserModal";
 import { Trash2, UserX } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useUnblockUser } from "@/features/block/hooks/useUnblockUser";
-import { useBlockedUsers } from "@/features/block/hooks/useBlockedUsers";
+
+import BlockUserModal from "@/components/blocked/ BlockUserModal";
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import Modal from "@/components/ui/Modal";
 import Spinner from "@/components/ui/Spinner";
+import { useBlockedUsers } from "@/features/block/hooks/useBlockedUsers";
+import { useUnblockUser } from "@/features/block/hooks/useUnblockUser";
 
 export default function BlockedUsers() {
   const { t } = useTranslation("block");
@@ -46,9 +48,9 @@ export default function BlockedUsers() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {users.map((user) => (
-              <div
+              <Card
                 key={user.id}
-                className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition border border-[#D9DFE4]"
+                className="shadow-sm hover:shadow-md transition border border-[#D9DFE4]"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
@@ -81,7 +83,7 @@ export default function BlockedUsers() {
                   {t("blockedOn")}{" "}
                   {new Date(user.blockedAt).toLocaleDateString()}
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         )}

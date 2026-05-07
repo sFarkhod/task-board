@@ -1,5 +1,5 @@
-import Label from "./Label";
 import ErrorText from "./ErrorText";
+import Label from "./Label";
 
 interface Props {
   id?: string;

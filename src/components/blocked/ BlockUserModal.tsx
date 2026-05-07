@@ -1,15 +1,17 @@
-import Button from "../ui/Button";
-import Textarea from "../ui/Textarea";
-import Select from "../ui/Select";
-import { useTranslation } from "react-i18next";
-import { useUsers } from "@/features/user/hooks/useUsers";
-import {
-  blockUserSchema,
-  type BlockUserFormData,
-} from "@/features/block/schema";
-import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
 import { useBlockUser } from "@/features/block/hooks/useBlockUser";
+import {
+  type BlockUserFormData,
+  blockUserSchema,
+} from "@/features/block/schema";
+import { useUsers } from "@/features/user/hooks/useUsers";
+
+import Button from "../ui/Button";
+import Select from "../ui/Select";
+import Textarea from "../ui/Textarea";
 
 interface Props {
   onClose: () => void;

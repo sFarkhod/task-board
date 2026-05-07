@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
 import { LayoutGrid, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   isOpen: boolean;

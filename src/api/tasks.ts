@@ -1,4 +1,5 @@
 import type { Task } from "@/types/task";
+
 import { api } from "./axios";
 
 export const getTasks = () => api.get<Task[]>("/tasks");

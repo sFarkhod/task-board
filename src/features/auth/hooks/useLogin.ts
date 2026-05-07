@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { loginUser } from "../auth.service";
 import { useNavigate } from "react-router-dom";
+
 import { useAuthStore } from "@/store/authStore";
+
+import { loginUser } from "../auth.service";
 import type { LoginFormData } from "../schema";
 
 export function useLogin() {

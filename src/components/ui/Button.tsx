@@ -1,5 +1,6 @@
-import type { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
+import type { ButtonHTMLAttributes } from "react";
+
 import Spinner from "./Spinner";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {

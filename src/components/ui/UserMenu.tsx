@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import { useAuthStore } from "@/store/authStore";
 import { LogOut } from "lucide-react";
+import { useEffect,useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useAuthStore } from "@/store/authStore";
+
 import Button from "./Button";
 
 export default function UserMenu({ t }: { t: (key: string) => string }) {
