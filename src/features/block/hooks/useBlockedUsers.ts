@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { BlockedUserModel } from "../../../types/block";
+import type { BlockedUserModel } from "@/types/block";
 import { fetchBlockedUsers } from "../block.service";
 
 export function useBlockedUsers() {

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "../components/ui/Button";
-import Modal from "../components/ui/Modal";
-import Select from "../components/ui/Select";
-import Textarea from "../components/ui/Textarea";
+import Button from "@/components/ui/Button";
+import Modal from "@/components/ui/Modal";
+import Select from "@/components/ui/Select";
+import Textarea from "@/components/ui/Textarea";
 import { t } from "i18next";
 
 type Props = {};

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Button from "../components/ui/Button";
-import Modal from "../components/ui/Modal";
-import BlockUserModal from "../components/blocked/ BlockUserModal";
+import Button from "@/components/ui/Button";
+import Modal from "@/components/ui/Modal";
+import BlockUserModal from "@/components/blocked/ BlockUserModal";
 import { Trash2, UserX } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useUnblockUser } from "../features/block/hooks/useUnblockUser";
-import { useBlockedUsers } from "../features/block/hooks/useBlockedUsers";
-import Spinner from "../components/ui/Spinner";
+import { useUnblockUser } from "@/features/block/hooks/useUnblockUser";
+import { useBlockedUsers } from "@/features/block/hooks/useBlockedUsers";
+import Spinner from "@/components/ui/Spinner";
 
 export default function BlockedUsers() {
   const { t } = useTranslation("block");

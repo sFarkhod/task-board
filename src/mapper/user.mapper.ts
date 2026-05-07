@@ -1,5 +1,5 @@
-import type { User } from "../types/auth";
-import type { UserModel } from "../types/user";
+import type { User } from "@/types/auth";
+import type { UserModel } from "@/types/user";
 
 export const mapUser = (user: User): UserModel => {
   return {

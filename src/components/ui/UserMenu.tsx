@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "@/store/authStore";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";

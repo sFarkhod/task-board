@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { UserModel } from "../../../types/user";
+import type { UserModel } from "@/types/user";
 import { fetchUsers } from "../user.service";
 
 export function useUsers() {

@@ -3,9 +3,9 @@ import {
   blockUserRequest,
   getBlockedUsers,
   unblockUserRequest,
-} from "../../api/block";
-import { getApiErrorMessage } from "../../api/handleApiError";
-import { mapBlockedUsers } from "../../mapper/block.mapper";
+} from "@/api/block";
+import { getApiErrorMessage } from "@/api/handleApiError";
+import { mapBlockedUsers } from "@/mapper/block.mapper";
 
 export const fetchBlockedUsers = async () => {
   try {

@@ -1,5 +1,5 @@
-import type { BlockedUser } from "../types/block";
-import type { BlockedUserModel } from "../types/block";
+import type { BlockedUser } from "@/types/block";
+import type { BlockedUserModel } from "@/types/block";
 
 export const mapBlockedUser = (item: BlockedUser): BlockedUserModel => {
   return {

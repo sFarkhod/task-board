@@ -2,14 +2,14 @@ import Button from "../ui/Button";
 import Textarea from "../ui/Textarea";
 import Select from "../ui/Select";
 import { useTranslation } from "react-i18next";
-import { useUsers } from "../../features/user/hooks/useUsers";
+import { useUsers } from "@/features/user/hooks/useUsers";
 import {
   blockUserSchema,
   type BlockUserFormData,
-} from "../../features/block/schema";
+} from "@/features/block/schema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useBlockUser } from "../../features/block/hooks/useBlockUser";
+import { useBlockUser } from "@/features/block/hooks/useBlockUser";
 
 interface Props {
   onClose: () => void;

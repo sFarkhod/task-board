@@ -1,5 +1,5 @@
-import { loginRequest, registerRequest } from "../../api/auth";
-import { getApiErrorMessage } from "../../api/handleApiError";
+import { loginRequest, registerRequest } from "@/api/auth";
+import { getApiErrorMessage } from "@/api/handleApiError";
 import type { RegisterFormData } from "./schema";
 import { toast } from "react-toastify";
 

@@ -1,5 +1,5 @@
 import { api } from "./axios";
-import type { BlockedUser } from "../types/block";
+import type { BlockedUser } from "@/types/block";
 
 export const getBlockedUsers = () => api.get<BlockedUser[]>("/blocks/me");
 

@@ -3,20 +3,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   registerSchema,
   type RegisterFormData,
-} from "../../features/auth/schema";
+} from "@/features/auth/schema";
 import { useTranslation } from "react-i18next";
-import Input from "../../components/ui/Input";
-import Button from "../../components/ui/Button";
-import Card from "../../components/ui/Card";
-import CardHeader from "../../components/ui/CardHeader";
-import CardDescription from "../../components/ui/CardDescription";
-import CardTitle from "../../components/ui/CardTitle";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import CardHeader from "@/components/ui/CardHeader";
+import CardDescription from "@/components/ui/CardDescription";
+import CardTitle from "@/components/ui/CardTitle";
 import { LayoutGrid } from "lucide-react";
-import CardFooter from "../../components/ui/CardFooter";
-import CardContent from "../../components/ui/CardContent";
+import CardFooter from "@/components/ui/CardFooter";
+import CardContent from "@/components/ui/CardContent";
 import { Link } from "react-router-dom";
-import FormField from "../../components/ui/FormField";
-import { useRegister } from "../../features/auth/hooks/useRegister";
+import FormField from "@/components/ui/FormField";
+import { useRegister } from "@/features/auth/hooks/useRegister";
 
 export default function Register() {
   const { t } = useTranslation("auth");
