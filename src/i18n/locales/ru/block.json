@@ -1,0 +1,9 @@
+{
+    "block": "Блок",
+    "blockUser": "Заблокировать",
+    "blockUserDescription": "Выберите пользователя и укажите причину",
+    "noBlockedUsers": "Нет заблокированных пользователей",
+    "noBlockedUsersDescription": "Вы еще не заблокировали ни одного пользователя.",
+    "reasonToBlocking": "Причина блокировки...",
+    "blockedOn": "Заблокировано"
+}

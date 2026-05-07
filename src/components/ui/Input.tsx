@@ -1,11 +1,11 @@
 import type { InputHTMLAttributes } from "react";
 import clsx from "clsx";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
 }
 
-export default function Input({ error, className, ...props }: InputProps) {
+export default function Input({ error, className, ...props }: Props) {
   return (
     <input
       {...props}

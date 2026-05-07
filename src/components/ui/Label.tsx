@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import type { LabelHTMLAttributes } from "react";
 
-interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {}
+interface Props extends LabelHTMLAttributes<HTMLLabelElement> {}
 
-export default function Label({ className, htmlFor, ...props }: LabelProps) {
+export default function Label({ className, htmlFor, ...props }: Props) {
   return (
     <label
       {...props}

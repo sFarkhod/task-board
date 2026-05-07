@@ -13,7 +13,7 @@ import CardFooter from "../../components/ui/CardFooter";
 import CardContent from "../../components/ui/CardContent";
 import { Link } from "react-router-dom";
 import FormField from "../../components/ui/FormField";
-import { useLogin } from "../../hooks/auth/useLogin";
+import { useLogin } from "../../features/auth/hooks/useLogin";
 
 export default function Login() {
   const { t } = useTranslation("auth");
@@ -63,7 +63,11 @@ export default function Login() {
               label={t("nickname")}
               error={getError(errors.nickname?.message)}
             >
-              <Input {...register("nickname")} placeholder={t("nickname")} />
+              <Input
+                {...register("nickname")}
+                placeholder={t("nickname")}
+                error={errors.nickname ? true : false}
+              />
             </FormField>
             <FormField
               id="password"
@@ -74,6 +78,7 @@ export default function Login() {
                 type="password"
                 {...register("password")}
                 placeholder={t("password")}
+                error={errors.password ? true : false}
               />
             </FormField>
             <Button loading={loading} type="submit">

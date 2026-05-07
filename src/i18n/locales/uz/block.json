@@ -1,0 +1,9 @@
+{
+    "block": "Blok",
+    "blockUser": "Bloklash",
+    "blockUserDescription": "Foydalanuvchini tanlang va sababni kiriting",
+    "noBlockedUsers": "Bloklangan foydalanuvchilar yo'q",
+    "noBlockedUsersDescription": "Siz hali hech kimni bloklamadingiz.",
+    "reasonToBlocking": "Bloklash sababi...",
+    "blockedOn": "Bloklangan sana"
+}

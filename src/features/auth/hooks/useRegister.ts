@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { registerUser } from "../../features/auth/auth.service";
+import { registerUser } from "../auth.service";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
-import type { RegisterFormData } from "../../features/auth/schema";
+import { useAuthStore } from "../../../store/authStore";
+import type { RegisterFormData } from "../schema";
 
 export function useRegister() {
   const [loading, setLoading] = useState(false);

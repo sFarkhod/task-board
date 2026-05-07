@@ -16,7 +16,7 @@ import CardFooter from "../../components/ui/CardFooter";
 import CardContent from "../../components/ui/CardContent";
 import { Link } from "react-router-dom";
 import FormField from "../../components/ui/FormField";
-import { useRegister } from "../../hooks/auth/useRegister";
+import { useRegister } from "../../features/auth/hooks/useRegister";
 
 export default function Register() {
   const { t } = useTranslation("auth");
@@ -68,7 +68,11 @@ export default function Register() {
               label={t("nickname")}
               error={getError(errors.nickname?.message)}
             >
-              <Input {...register("nickname")} placeholder={t("nickname")} />
+              <Input
+                {...register("nickname")}
+                placeholder={t("nickname")}
+                error={errors.nickname ? true : false}
+              />
             </FormField>
             <FormField
               id="email"
@@ -79,6 +83,7 @@ export default function Register() {
                 id="email"
                 {...register("email")}
                 placeholder={t("email")}
+                error={errors.email ? true : false}
               />
             </FormField>
             <FormField
@@ -90,6 +95,7 @@ export default function Register() {
                 type="password"
                 {...register("password")}
                 placeholder={t("password")}
+                error={errors.password ? true : false}
               />
             </FormField>
             <Button loading={loading} type="submit">

@@ -4,5 +4,11 @@
   "loading": "Загрузка...",
   "error": "Ошибка",
   "noData": "Данные недоступны",
-  "unknownError": "Неизвестная ошибка"
+  "unknownError": "Неизвестная ошибка",
+  "board": "Доска",
+  "blockedUsers": "Заблокированные",
+  "selectUser": "Выбрать пользователя",
+  "charactersLeft": "символов осталось",
+  "cancel": "Отмена",
+  "logout": "Выйти"
 }

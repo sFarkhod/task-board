@@ -1,0 +1,9 @@
+{
+    "block": "Block",
+    "blockUser": "Block User",
+    "blockUserDescription": "Select a user and provide a reason",
+    "noBlockedUsers": "No blocked users",
+    "noBlockedUsersDescription": "You haven't blocked any users yet.",
+    "reasonToBlocking": "Reason for blocking...",
+    "blockedOn": "Blocked on"
+}

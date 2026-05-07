@@ -4,5 +4,11 @@
   "loading": "Yuklanmoqda...",
   "error": "Xato",
   "noData": "Ma'lumot mavjud emas",
-  "unknownError": "Noma'lum xato"
+  "unknownError": "Noma'lum xato",
+  "board": "Doska",
+  "blockedUsers": "Bloklanganlar",
+  "selectUser": "Foydalanuvchini tanlang",
+  "charactersLeft": "belgilar qoldi",
+  "cancel": "Bekor qilish",
+  "logout": "Chiqish"
 }

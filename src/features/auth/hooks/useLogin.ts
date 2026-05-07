@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { loginUser } from "../../features/auth/auth.service";
+import { loginUser } from "../auth.service";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
-import type { LoginFormData } from "../../features/auth/schema";
+import { useAuthStore } from "../../../store/authStore";
+import type { LoginFormData } from "../schema";
 
 export function useLogin() {
   const [loading, setLoading] = useState(false);
