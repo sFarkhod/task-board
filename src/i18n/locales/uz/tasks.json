@@ -1,6 +1,24 @@
 {
-    "tasks": "Vazifalar",
-    "addTask": "Vazifa qo'shish",
-    "editTask": "Vazifani tahrirlash",
-    "deleteTask": "Vazifani o'chirish"
+  "tasks": "Vazifalar",
+  "addTask": "Vazifa qo'shish",
+  "editTask": "Vazifani tahrirlash",
+  "deleteTask": "Vazifani o'chirish",
+  "allStatuses": "Barcha",
+  "todo": "Qilish kerak",
+  "inProgress": "Dasturda",
+  "done": "Bajarildi",
+  "allPriorities": "Barcha",
+  "low": "Past",
+  "medium": "O'rta",
+  "high": "Yuqori",
+  "allTasks": "Barcha",
+  "createdByMe": "Menga qo'shilgan",
+  "assignedToMe": "Menga topshirilgan",
+  "involved": "Qatnashgan",
+  "searchTasks": "Qidirish...",
+  "status": "Holat",
+  "priority": "Prioritet",
+  "mine": "Mening",
+  "noTasksFound": "Vazifalar topilmadi",
+  "newTask": "Yangi vazifa"
 }

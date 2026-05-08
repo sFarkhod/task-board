@@ -3,7 +3,6 @@ import ReactSelect from "react-select";
 export interface Option {
   label: string;
   value: string;
-  [key: string]: any;
 }
 
 interface Props {
@@ -11,6 +10,7 @@ interface Props {
   value?: Option | null;
   onChange: (value: Option | null) => void;
   placeholder?: string;
+  isClearable?: boolean;
   error?: string | null;
   loading?: boolean;
 }
@@ -20,6 +20,7 @@ export default function Select({
   value,
   onChange,
   placeholder,
+  isClearable = false,
   error,
   loading = false,
 }: Props) {
@@ -30,6 +31,7 @@ export default function Select({
         value={value}
         onChange={onChange}
         isLoading={loading}
+        isClearable={isClearable}
         placeholder={placeholder}
         classNamePrefix="react-select"
         styles={{
@@ -40,7 +42,7 @@ export default function Select({
               : state.isFocused
                 ? "#3b82f6"
                 : "#d1d5db",
-
+            minHeight: "44px",
             boxShadow: state.isFocused
               ? error
                 ? "0 0 0 2px rgba(239, 68, 68, 0.2)"

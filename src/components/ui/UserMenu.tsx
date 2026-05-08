@@ -50,7 +50,7 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
       </div>
 
       <div
-        className={`absolute right-0 mt-2 w-56 bg-white border border-pureSilicon rounded-lg shadow-lg p-3
+        className={`absolute right-0 z-50 mt-2 w-56 bg-white border border-pureSilicon rounded-lg shadow-lg p-3
         transition-all duration-200 origin-top-right
         ${
           open

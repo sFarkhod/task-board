@@ -1,6 +1,24 @@
 {
-    "tasks": "Задачи",
-    "addTask": "Добавить задачу",
-    "editTask": "Редактировать задачу",
-    "deleteTask": "Удалить задачу"
+  "tasks": "Задачи",
+  "addTask": "Добавить задачу",
+  "editTask": "Редактировать задачу",
+  "deleteTask": "Удалить задачу",
+  "allStatuses": "Все",
+  "todo": "К выполнению",
+  "inProgress": "В процессе",
+  "done": "Готово",
+  "allPriorities": "Все",
+  "low": "Низкий",
+  "medium": "Средний",
+  "high": "Высокий",
+  "allTasks": "Все",
+  "createdByMe": "Создано мной",
+  "assignedToMe": "Назначено мне",
+  "involved": "Участвую",
+  "searchTasks": "Поиск задач...",
+  "status": "Статус",
+  "priority": "Приоритет",
+  "mine": "Мои",
+  "noTasksFound": "Задачи не найдены",
+  "newTask": "Задача"
 }

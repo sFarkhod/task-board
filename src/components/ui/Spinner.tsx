@@ -13,7 +13,11 @@ export default function Spinner({ size = "sm", color = "#ffffff" }: Props) {
   return (
     <div className="flex items-center justify-center">
       <div
-        className={`${sizeClasses[size]} border-2 border-[${color}] border-t-transparent rounded-full animate-spin`}
+        className={`${sizeClasses[size]} border-2 border-t-transparent rounded-full animate-spin`}
+        style={{
+          borderColor: color,
+          borderTopColor: "transparent",
+        }}
       />
     </div>
   );

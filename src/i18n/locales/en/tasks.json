@@ -1,6 +1,24 @@
 {
-    "tasks": "Tasks",
-    "addTask": "Add Task",
-    "editTask": "Edit Task",
-    "deleteTask": "Delete Task"
+  "tasks": "Tasks",
+  "addTask": "Add Task",
+  "editTask": "Edit Task",
+  "deleteTask": "Delete Task",
+  "allStatuses": "All Statuses",
+  "todo": "To Do",
+  "inProgress": "In Progress",
+  "done": "Done",
+  "allPriorities": "All Priorities",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+  "allTasks": "All Tasks",
+  "createdByMe": "Created By Me",
+  "assignedToMe": "Assigned To Me",
+  "involved": "Involved",
+  "searchTasks": "Search tasks...",
+  "status": "Status",
+  "priority": "Priority",
+  "mine": "Mine",
+  "noTasksFound": "No tasks found",
+  "newTask": "New Task"
 }

@@ -1,49 +1,36 @@
-import { t } from "i18next";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import Button from "@/components/ui/Button";
-import Modal from "@/components/ui/Modal";
-import Select from "@/components/ui/Select";
-import Textarea from "@/components/ui/Textarea";
+import TaskCard from "@/components/task/TaskCard";
+import TaskFilters from "@/components/task/TaskFilters";
+import Spinner from "@/components/ui/Spinner";
+import { useTasks } from "@/features/task/hooks/useTasks";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function Board() {
   usePageTitle("board");
+  const { t } = useTranslation("tasks");
+  const { tasks, loading, filters, setFilters } = useTasks();
 
   const [open, setOpen] = useState(false);
 
+  console.log("open", open);
+
   return (
-    <div>
-      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+    <div className="pt-2">
+      <TaskFilters filters={filters} onChange={setFilters} setOpen={setOpen} />
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        title="Block user"
-        description="Select a user and provide a reason"
-      >
-        <div className="flex justify-end gap-2">
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button>Confirm</Button>
+      {loading ? (
+        <Spinner size="md" color="#D9DFE4" />
+      ) : tasks.length === 0 ? (
+        <div className="text-gray-500">{t("noTasksFound")}</div>
+      ) : (
+        <div className="grid gap-4">
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
         </div>
-      </Modal>
-
-      <Select
-        placeholder="Select user"
-        onChange={() => {}}
-        options={[
-          { label: "John", value: "1" },
-          { label: "Anna", value: "2" },
-        ]}
-      />
-
-      <Textarea
-        t={t}
-        label="Description"
-        placeholder="Enter description..."
-        maxLength={200}
-        showRemaining
-      />
+      )}
     </div>
   );
 }

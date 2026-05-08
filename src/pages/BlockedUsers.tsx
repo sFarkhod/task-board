@@ -26,7 +26,7 @@ export default function BlockedUsers() {
 
   return (
     <div>
-      <div className="flex justify-end items-center mb-4 w-full">
+      <div className="flex justify-end items-center pt-2 mb-4 w-full">
         <Button
           variant="danger"
           className="max-w-40 flex items-center justify-center rounded-lg px-4"
