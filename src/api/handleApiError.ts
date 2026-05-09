@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export function getApiErrorMessage(error: unknown): string {
-  if (axios.isAxiosError(error)) {
-    const data = error.response?.data;
+export function getApiErrorMessage(err: unknown): string {
+  if (axios.isAxiosError(err)) {
+    const data = err.response?.data;
 
     const message = data?.message;
 
@@ -18,7 +18,7 @@ export function getApiErrorMessage(error: unknown): string {
       return data.error;
     }
 
-    return error.message || "Something went wrong";
+    return err.message || "Something went wrong";
   }
 
   return "Unknown error";
