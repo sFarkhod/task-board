@@ -11,8 +11,8 @@ export function useUsers() {
   const fetch = async () => {
     try {
       setLoading(true);
-      const res = await fetchUsers();
-      setData(res);
+      const result = await fetchUsers();
+      setData(result);
     } finally {
       setLoading(false);
     }

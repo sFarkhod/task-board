@@ -34,6 +34,7 @@ export default function Select({
         isClearable={isClearable}
         placeholder={placeholder}
         menuPlacement="auto"
+        menuPortalTarget={document.body}
         classNamePrefix="react-select"
         styles={{
           control: (base, state) => ({
@@ -58,6 +59,10 @@ export default function Select({
             ...base,
             maxHeight: "200px",
             overflowY: "auto",
+          }),
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9999,
           }),
         }}
       />

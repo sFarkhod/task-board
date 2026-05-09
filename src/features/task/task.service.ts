@@ -17,26 +17,26 @@ import type { Task, TaskFilters } from "@/types/task";
 
 //! GET TASKS
 export const fetchTasks = async (params?: TaskFilters) => {
-  const res = await getTasks(params);
-  return mapTaskList(res.data);
+  const result = await getTasks(params);
+  return mapTaskList(result.data);
 };
 
 //! GET TASK BY ID
 export const fetchTaskById = async (id: string) => {
-  const res = await getTaskById(id);
-  return mapTask(res.data);
+  const result = await getTaskById(id);
+  return mapTask(result.data);
 };
 
 //! CREATE TASK
 export const createTaskService = async (data: Partial<Task>) => {
-  const res = await createTask(data);
-  return mapTask(res.data);
+  const result = await createTask(data);
+  return mapTask(result.data);
 };
 
 //! UPDATE TASK
 export const updateTaskService = async (id: string, data: Partial<Task>) => {
-  const res = await updateTask(id, data);
-  return mapTask(res.data);
+  const result = await updateTask(id, data);
+  return mapTask(result.data);
 };
 
 //! DELETE TASK
@@ -69,8 +69,8 @@ export const rejectAssignmentService = async (id: string, comment: string) => {
 
 //! TAG ADD
 export const addTaskTagService = async (id: string, name: string) => {
-  const res = await addTaskTag(id, name);
-  return mapTask(res.data);
+  const result = await addTaskTag(id, name);
+  return mapTask(result.data);
 };
 
 //! TAG REMOVE
