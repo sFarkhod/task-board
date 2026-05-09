@@ -6,7 +6,7 @@ export type TaskPriority = "LOW" | "MEDIUM" | "HIGH";
 
 export type AssignmentStatus = "NONE" | "PENDING" | "APPROVED" | "REJECTED";
 
-export type TaskVisibility = "ONLY_ME" | "PUBLIC" | "PRIVATE";
+export type TaskVisibility = "ONLY_ME" | "LIST" | "ANYONE";
 
 export type UserModelForTask = Omit<User, "role">;
 

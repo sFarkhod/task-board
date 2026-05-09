@@ -46,7 +46,7 @@ export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
       title: "",
       status: "TODO",
       priority: "LOW",
-      visibility: "PUBLIC",
+      visibility: "ANYONE",
     },
   });
 

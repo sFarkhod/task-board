@@ -34,6 +34,7 @@ export const getTaskPrioritySelectOptions = (t: TFunction) => [
 ];
 
 export const getTaskVisibilitySelectOptions = (t: TFunction) => [
+  { label: t("anyone"), value: "ANYONE" },
   { label: t("onlyMe"), value: "ONLY_ME" },
-  { label: t("public"), value: "PUBLIC" },
+  { label: t("list"), value: "LIST" },
 ];

@@ -27,6 +27,7 @@
   "description": "Описание",
   "visibility": "Видимость",
   "onlyMe": "Только я",
-  "public": "Публично",
+  "list": "Список",
+  "anyone": "Все",
   "titleRequired": "Название обязательно"
 }

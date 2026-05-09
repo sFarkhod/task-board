@@ -27,6 +27,7 @@
   "description": "Tavsif",
   "visibility": "Ko'rinish",
   "onlyMe": "Faqat men",
-  "public": "Umumiy",
+  "list": "Ro'yxat",
+  "anyone": "Hamma",
   "titleRequired": "Nom kerak"
 }

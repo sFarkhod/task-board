@@ -8,7 +8,7 @@ export const createTaskSchema = z.object({
   priority: z.enum(["LOW", "MEDIUM", "HIGH"]).optional(),
 
   assigneeId: z.string().optional(),
-  visibility: z.enum(["ONLY_ME", "PUBLIC"]).optional(),
+  visibility: z.enum(["ONLY_ME", "LIST", "ANYONE"]).optional(),
 
   viewerUserIds: z.array(z.string()).optional(),
 });

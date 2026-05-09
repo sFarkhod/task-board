@@ -27,6 +27,7 @@
   "description": "Description",
   "visibility": "Visibility",
   "onlyMe": "Only Me",
-  "public": "Public",
+  "list": "List",
+  "anyone": "Anyone",
   "titleRequired": "Title is required"
 }
