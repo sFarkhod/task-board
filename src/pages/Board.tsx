@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import TaskAddModal from "@/components/task/TaskAddModal";
 import TaskCard from "@/components/task/TaskCard";
 import TaskFilters from "@/components/task/TaskFilters";
 import Spinner from "@/components/ui/Spinner";
@@ -10,11 +11,9 @@ import { usePageTitle } from "@/hooks/usePageTitle";
 export default function Board() {
   usePageTitle("board");
   const { t } = useTranslation("tasks");
-  const { tasks, loading, filters, setFilters } = useTasks();
+  const { tasks, loading, filters, setFilters, refetch } = useTasks();
 
   const [open, setOpen] = useState(false);
-
-  console.log("open", open);
 
   return (
     <div className="pt-2">
@@ -31,6 +30,13 @@ export default function Board() {
           ))}
         </div>
       )}
+
+      <TaskAddModal
+        key={open ? "open" : "closed"}
+        open={open}
+        onClose={() => setOpen(false)}
+        onSuccess={refetch}
+      />
     </div>
   );
 }

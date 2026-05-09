@@ -21,8 +21,6 @@ export function useRegister() {
       }
 
       navigate("/");
-    } catch (err: any) {
-      throw err;
     } finally {
       setLoading(false);
     }

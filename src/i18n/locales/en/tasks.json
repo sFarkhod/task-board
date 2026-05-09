@@ -20,5 +20,13 @@
   "priority": "Priority",
   "mine": "Mine",
   "noTasksFound": "No tasks found",
-  "newTask": "New Task"
+  "newTask": "New Task",
+  "createTask": "Create Task",
+  "createTaskDescription": "Add a new task to your board",
+  "title": "Title",
+  "description": "Description",
+  "visibility": "Visibility",
+  "onlyMe": "Only Me",
+  "public": "Public",
+  "titleRequired": "Title is required"
 }

@@ -1,8 +1,13 @@
 import { Plus } from "lucide-react";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
 import Select from "@/components/ui/Select";
+import {
+  getPriorityOptions,
+  getStatusOptions,
+  getTaskPrioritySelectOptions,
+} from "@/constants/taskOptions";
 import type { TaskFilters } from "@/types/task";
 
 import Button from "../ui/Button";
@@ -17,33 +22,9 @@ interface Props {
 function TaskFilters({ filters, onChange, setOpen }: Props) {
   const { t } = useTranslation("tasks");
 
-  const statusOptions = useMemo(
-    () => [
-      { label: t("allStatuses"), value: "" },
-      { label: t("todo"), value: "TODO" },
-      { label: t("inProgress"), value: "IN_PROGRESS" },
-      { label: t("done"), value: "DONE" },
-    ],
-    [t],
-  );
-  const priorityOptions = useMemo(
-    () => [
-      { label: t("allPriorities"), value: "" },
-      { label: t("low"), value: "LOW" },
-      { label: t("medium"), value: "MEDIUM" },
-      { label: t("high"), value: "HIGH" },
-    ],
-    [t],
-  );
-  const mineOptions = useMemo(
-    () => [
-      { label: t("allTasks"), value: "all" },
-      { label: t("createdByMe"), value: "created" },
-      { label: t("assignedToMe"), value: "assigned" },
-      { label: t("involved"), value: "involved" },
-    ],
-    [t],
-  );
+  const statusOptions = getStatusOptions(t);
+  const priorityOptions = getPriorityOptions(t);
+  const mineOptions = getTaskPrioritySelectOptions(t);
 
   return (
     <div className="mb-6">

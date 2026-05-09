@@ -3,7 +3,9 @@ import { LayoutGrid } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
+import { getApiErrorMessage } from "@/api/handleApiError";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import CardContent from "@/components/ui/CardContent";
@@ -14,7 +16,8 @@ import CardTitle from "@/components/ui/CardTitle";
 import FormField from "@/components/ui/FormField";
 import Input from "@/components/ui/Input";
 import { useLogin } from "@/features/auth/hooks/useLogin";
-import { type LoginFormData,loginSchema } from "@/features/auth/schema";
+import { type LoginFormData, loginSchema } from "@/features/auth/schema";
+import getError from "@/utils/getError";
 
 export default function Login() {
   const { t } = useTranslation("auth");
@@ -31,12 +34,11 @@ export default function Login() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    await loginUser(data);
-  };
-
-  const getError = (msg?: unknown) => {
-    if (typeof msg === "string") return t(msg);
-    return null;
+    try {
+      await loginUser(data);
+    } catch (error) {
+      toast.error(getApiErrorMessage(error));
+    }
   };
 
   return (
@@ -62,7 +64,7 @@ export default function Login() {
             <FormField
               id="nickname"
               label={t("nickname")}
-              error={getError(errors.nickname?.message)}
+              error={getError(t, errors.nickname?.message)}
             >
               <Input
                 {...register("nickname")}
@@ -73,7 +75,7 @@ export default function Login() {
             <FormField
               id="password"
               label={t("password")}
-              error={getError(errors.password?.message)}
+              error={getError(t, errors.password?.message)}
             >
               <Input
                 type="password"

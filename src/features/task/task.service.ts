@@ -1,6 +1,3 @@
-import { toast } from "react-toastify";
-
-import { getApiErrorMessage } from "@/api/handleApiError";
 import {
   addTaskTag,
   approveAssignment,
@@ -16,61 +13,35 @@ import {
 } from "@/api/tasks";
 import { mapTask } from "@/mapper/task.mapper";
 import { mapTaskList } from "@/mapper/task-list.mapper";
-import type { Task,TaskFilters } from "@/types/task";
+import type { Task, TaskFilters } from "@/types/task";
 
 //! GET TASKS
 export const fetchTasks = async (params?: TaskFilters) => {
-  try {
-    const res = await getTasks(params);
-    return mapTaskList(res.data);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-    return {
-      items: [],
-      total: 0,
-      page: params?.page || 1,
-      pageSize: params?.pageSize || 10,
-    };
-  }
+  const res = await getTasks(params);
+  return mapTaskList(res.data);
 };
 
 //! GET TASK BY ID
 export const fetchTaskById = async (id: string) => {
-  try {
-    const res = await getTaskById(id);
-    return mapTask(res.data);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  const res = await getTaskById(id);
+  return mapTask(res.data);
 };
 
 //! CREATE TASK
 export const createTaskService = async (data: Partial<Task>) => {
-  try {
-    const res = await createTask(data);
-    return mapTask(res.data);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  const res = await createTask(data);
+  return mapTask(res.data);
 };
 
 //! UPDATE TASK
 export const updateTaskService = async (id: string, data: Partial<Task>) => {
-  try {
-    const res = await updateTask(id, data);
-    return mapTask(res.data);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  const res = await updateTask(id, data);
+  return mapTask(res.data);
 };
 
 //! DELETE TASK
 export const deleteTaskService = async (id: string) => {
-  try {
-    return await removeTask(id);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  return await removeTask(id);
 };
 
 //! STATUS UPDATE
@@ -78,55 +49,31 @@ export const updateTaskStatusService = async (
   id: string,
   status: Task["status"],
 ) => {
-  try {
-    return await updateTaskStatus(id, status);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  return await updateTaskStatus(id, status);
 };
 
 //! ASSIGN TASK
 export const assignTaskService = async (id: string, assigneeId: string) => {
-  try {
-    return await assignTask(id, assigneeId);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  return await assignTask(id, assigneeId);
 };
 
 //! APPROVE ASSIGNMENT
 export const approveAssignmentService = async (id: string) => {
-  try {
-    return await approveAssignment(id);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  return await approveAssignment(id);
 };
 
 //! REJECT ASSIGNMENT
 export const rejectAssignmentService = async (id: string, comment: string) => {
-  try {
-    return await rejectAssignment(id, comment);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  return await rejectAssignment(id, comment);
 };
 
 //! TAG ADD
 export const addTaskTagService = async (id: string, name: string) => {
-  try {
-    const res = await addTaskTag(id, name);
-    return mapTask(res.data);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  const res = await addTaskTag(id, name);
+  return mapTask(res.data);
 };
 
 //! TAG REMOVE
 export const removeTaskTagService = async (id: string, tagId: string) => {
-  try {
-    return await removeTaskTag(id, tagId);
-  } catch (error) {
-    toast.error(getApiErrorMessage(error));
-  }
+  return await removeTaskTag(id, tagId);
 };

@@ -3,7 +3,9 @@ import { LayoutGrid } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
+import { getApiErrorMessage } from "@/api/handleApiError";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import CardContent from "@/components/ui/CardContent";
@@ -14,10 +16,8 @@ import CardTitle from "@/components/ui/CardTitle";
 import FormField from "@/components/ui/FormField";
 import Input from "@/components/ui/Input";
 import { useRegister } from "@/features/auth/hooks/useRegister";
-import {
-  type RegisterFormData,
-  registerSchema,
-} from "@/features/auth/schema";
+import { type RegisterFormData, registerSchema } from "@/features/auth/schema";
+import getError from "@/utils/getError";
 
 export default function Register() {
   const { t } = useTranslation("auth");
@@ -34,12 +34,11 @@ export default function Register() {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
-    await registerUser(data);
-  };
-
-  const getError = (msg?: unknown) => {
-    if (typeof msg === "string") return t(msg);
-    return null;
+    try {
+      await registerUser(data);
+    } catch (error) {
+      toast.error(getApiErrorMessage(error));
+    }
   };
 
   return (
@@ -67,7 +66,7 @@ export default function Register() {
             <FormField
               id="nickname"
               label={t("nickname")}
-              error={getError(errors.nickname?.message)}
+              error={getError(t, errors.nickname?.message)}
             >
               <Input
                 {...register("nickname")}
@@ -78,7 +77,7 @@ export default function Register() {
             <FormField
               id="email"
               label={t("email")}
-              error={getError(errors.email?.message)}
+              error={getError(t, errors.email?.message)}
             >
               <Input
                 id="email"
@@ -90,7 +89,7 @@ export default function Register() {
             <FormField
               id="password"
               label={t("password")}
-              error={getError(errors.password?.message)}
+              error={getError(t, errors.password?.message)}
             >
               <Input
                 type="password"

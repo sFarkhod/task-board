@@ -1,11 +1,12 @@
 import { Trash2, UserX } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
+import { getApiErrorMessage } from "@/api/handleApiError";
 import BlockUserModal from "@/components/blocked/ BlockUserModal";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import Modal from "@/components/ui/Modal";
 import Spinner from "@/components/ui/Spinner";
 import { useBlockedUsers } from "@/features/block/hooks/useBlockedUsers";
 import { useUnblockUser } from "@/features/block/hooks/useUnblockUser";
@@ -13,15 +14,19 @@ import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function BlockedUsers() {
   usePageTitle("blockedUsers");
-  
+
   const { t } = useTranslation("block");
   const { data: users, loading, refetch } = useBlockedUsers();
   const { unblock } = useUnblockUser();
   const [open, setOpen] = useState(false);
 
   const handleUnblock = async (id: string) => {
-    await unblock(id);
-    refetch();
+    try {
+      await unblock(id);
+      refetch();
+    } catch (error) {
+      toast.error(getApiErrorMessage(error));
+    }
   };
 
   return (
@@ -92,18 +97,12 @@ export default function BlockedUsers() {
         )}
       </div>
 
-      <Modal
+      <BlockUserModal
+        key={open ? "open" : "closed"}
         open={open}
         onClose={() => setOpen(false)}
-        title={t("blockUser")}
-        description={t("blockUserDescription")}
-      >
-        <BlockUserModal
-          key={open ? "open" : "closed"}
-          onClose={() => setOpen(false)}
-          onSuccess={refetch}
-        />
-      </Modal>
+        onSuccess={refetch}
+      />
     </div>
   );
 }

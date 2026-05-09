@@ -20,5 +20,13 @@
   "priority": "Prioritet",
   "mine": "Mening",
   "noTasksFound": "Vazifalar topilmadi",
-  "newTask": "Yangi vazifa"
+  "newTask": "Yangi vazifa",
+  "createTask": "Vazifa yaratish",
+  "createTaskDescription": "Yangi vazifani taxtangizga qo'shing",
+  "title": "Nomi",
+  "description": "Tavsif",
+  "visibility": "Ko'rinish",
+  "onlyMe": "Faqat men",
+  "public": "Umumiy",
+  "titleRequired": "Nom kerak"
 }

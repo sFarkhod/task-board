@@ -20,5 +20,13 @@
   "priority": "Приоритет",
   "mine": "Мои",
   "noTasksFound": "Задачи не найдены",
-  "newTask": "Задача"
+  "newTask": "Задача",
+  "createTask": "Создать задачу",
+  "createTaskDescription": "Добавьте новую задачу на вашу доску",
+  "title": "Название",
+  "description": "Описание",
+  "visibility": "Видимость",
+  "onlyMe": "Только я",
+  "public": "Публично",
+  "titleRequired": "Название обязательно"
 }

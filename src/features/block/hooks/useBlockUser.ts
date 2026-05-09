@@ -9,8 +9,6 @@ export function useBlockUser() {
     try {
       setLoading(true);
       await blockUser(data);
-    } catch (err) {
-      throw err;
     } finally {
       setLoading(false);
     }

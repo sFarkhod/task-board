@@ -21,8 +21,6 @@ export function useLogin() {
       }
 
       navigate("/");
-    } catch (err: any) {
-      throw err;
     } finally {
       setLoading(false);
     }

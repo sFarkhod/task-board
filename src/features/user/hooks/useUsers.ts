@@ -13,8 +13,6 @@ export function useUsers() {
       setLoading(true);
       const res = await fetchUsers();
       setData(res);
-    } catch (err) {
-      throw err;
     } finally {
       setLoading(false);
     }

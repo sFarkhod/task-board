@@ -9,8 +9,6 @@ export function useUnblockUser() {
     try {
       setLoading(true);
       await unblockUser(id);
-    } catch (err) {
-      throw err;
     } finally {
       setLoading(false);
     }
