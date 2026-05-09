@@ -33,6 +33,7 @@ export default function Select({
         isLoading={loading}
         isClearable={isClearable}
         placeholder={placeholder}
+        menuPlacement="auto"
         classNamePrefix="react-select"
         styles={{
           control: (base, state) => ({

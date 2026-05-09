@@ -33,24 +33,22 @@ export default function Modal({
     };
   }, [open, onClose]);
 
+  if (!open) return null;
+
   return createPortal(
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center
-      ${open ? "pointer-events-auto" : "pointer-events-none"}`}
-    >
-      <div
-        onClick={onClose}
-        className={`absolute inset-0 bg-black/50 transition-opacity duration-200
-        ${open ? "opacity-100" : "opacity-0"}`}
-      />
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div onClick={onClose} className="absolute inset-0 bg-black/50" />
 
       <div
-        className={`relative bg-white rounded-xl shadow-lg w-full max-w-md mx-4
-        transform transition-all duration-200
-        ${open ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+        className="
+          relative bg-white rounded-xl shadow-lg w-full max-w-md mx-4
+          max-h-[90vh] flex flex-col
+          transform transition-all duration-200
+          opacity-100 scale-100
+        "
       >
         {(title || description) && (
-          <div className="flex items-start justify-between p-5 border-b border-pureSilicon">
+          <div className="flex items-start justify-between p-5 border-b border-pureSilicon shrink-0">
             <div>
               {title && (
                 <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
@@ -67,7 +65,7 @@ export default function Modal({
           </div>
         )}
 
-        <div className="p-5">{children}</div>
+        <div className="p-5 overflow-y-auto">{children}</div>
       </div>
     </div>,
     document.body,
