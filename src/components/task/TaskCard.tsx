@@ -4,6 +4,7 @@ import Card from "../ui/Card";
 
 interface Props {
   task: Task;
+  onClick?: () => void;
 }
 
 const priorityColors = {
@@ -18,9 +19,12 @@ const statusColors = {
   DONE: "bg-purple-100 text-purple-700",
 };
 
-export default function TaskCard({ task }: Props) {
+export default function TaskCard({ task, onClick }: Props) {
   return (
-    <Card className="shadow-sm hover:shadow-md transition cursor-pointer">
+    <Card
+      onClick={onClick}
+      className="shadow-sm hover:shadow-md transition cursor-pointer"
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="font-semibold text-gray-800 truncate">{task.title}</h2>

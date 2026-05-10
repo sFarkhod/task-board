@@ -1,4 +1,4 @@
-import ReactSelect from "react-select";
+import ReactCreatableSelect from "react-select/creatable";
 
 export interface Option {
   label: string;
@@ -7,66 +7,70 @@ export interface Option {
 
 interface Props {
   options: Option[];
-  value?: Option | Option[] | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange: (value: any) => void;
+  value?: Option | null;
+  onChange: (value: Option | null) => void;
   placeholder?: string;
-  isClearable?: boolean;
-  isMulti?: boolean;
   error?: string | null;
   loading?: boolean;
+  isClearable?: boolean;
+  isDisabled?: boolean;
 }
 
-export default function Select({
+export default function CreatableSelect({
   options,
   value,
   onChange,
   placeholder,
-  isClearable = false,
-  isMulti = false,
   error,
   loading = false,
+  isClearable = false,
+  isDisabled = false,
 }: Props) {
   return (
     <div className="w-full">
-      <ReactSelect
+      <ReactCreatableSelect
         options={options}
         value={value}
-        onChange={onChange}
+        onChange={(v) => onChange(v as Option | null)}
         isLoading={loading}
         isClearable={isClearable}
-        isMulti={isMulti}
+        isDisabled={isDisabled}
         placeholder={placeholder}
         menuPlacement="auto"
         menuPortalTarget={document.body}
         classNamePrefix="react-select"
         styles={{
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9999,
+          }),
+
           control: (base, state) => ({
             ...base,
+
+            minHeight: "44px",
+
             borderColor: error
               ? "#ef4444"
               : state.isFocused
                 ? "#3b82f6"
                 : "#d1d5db",
-            minHeight: "44px",
+
             boxShadow: state.isFocused
               ? error
-                ? "0 0 0 2px rgba(239, 68, 68, 0.2)"
-                : "0 0 0 2px rgba(59, 130, 246, 0.2)"
+                ? "0 0 0 2px rgba(239,68,68,.2)"
+                : "0 0 0 2px rgba(59,130,246,.2)"
               : "none",
 
             "&:hover": {
               borderColor: error ? "#ef4444" : "#9ca3af",
             },
           }),
+
           menuList: (base) => ({
             ...base,
-            maxHeight: "200px",
+            maxHeight: "220px",
             overflowY: "auto",
-          }),
-          menuPortal: (base) => ({
-            ...base,
-            zIndex: 9999,
           }),
         }}
       />

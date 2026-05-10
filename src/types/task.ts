@@ -10,6 +10,12 @@ export type TaskVisibility = "ONLY_ME" | "LIST" | "ANYONE";
 
 export type UserModelForTask = Omit<User, "role">;
 
+export type UpdateField =
+  | "status"
+  | "priority"
+  | "visibility"
+  | "viewerUserIds";
+
 export type Tag = {
   id: string;
   name: string;
@@ -63,3 +69,12 @@ export type TaskListResponse = {
   page: number;
   pageSize: number;
 };
+
+export interface UpdateTaskPayload {
+  title: string;
+  description: string;
+  status: TaskStatus;
+  priority: TaskPriority;
+  visibility: TaskVisibility;
+  viewerUserIds: string[];
+}

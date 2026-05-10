@@ -10,6 +10,7 @@ import {
   blockUserSchema,
 } from "@/features/block/schema";
 import { useUsers } from "@/features/user/hooks/useUsers";
+import { useAuthStore } from "@/store/authStore";
 
 import Button from "../ui/Button";
 import FormField from "../ui/FormField";
@@ -24,11 +25,20 @@ interface Props {
 }
 
 export default function BlockUserModal({ open, onClose, onSuccess }: Props) {
+  const user = useAuthStore((s) => s.user);
+
   const { t } = useTranslation("common");
   const { t: tBlock } = useTranslation("block");
 
   const { data: users, loading: usersLoading } = useUsers();
   const { block, loading } = useBlockUser();
+
+  const userOptions = users
+    .filter((u) => u.value !== user?.id)
+    .map((user) => ({
+      label: user.label,
+      value: user.value,
+    }));
 
   const {
     control,
@@ -73,8 +83,8 @@ export default function BlockUserModal({ open, onClose, onSuccess }: Props) {
           render={({ field }) => (
             <FormField id="blockedUserId" label={t("selectUser")}>
               <Select
-                options={users}
-                value={users.find((o) => o.value === field.value) || null}
+                options={userOptions}
+                value={userOptions.find((o) => o.value === field.value) || null}
                 onChange={(val) => field.onChange(val?.value)}
                 placeholder={t("selectUser")}
                 error={errors.blockedUserId && t(errors.blockedUserId.message!)}

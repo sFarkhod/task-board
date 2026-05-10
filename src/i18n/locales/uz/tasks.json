@@ -29,5 +29,8 @@
   "onlyMe": "Faqat men",
   "list": "Ro'yxat",
   "anyone": "Hamma",
-  "titleRequired": "Nom kerak"
+  "titleRequired": "Nom kerak",
+  "saveChanges": "O'zgartirish",
+  "addTag": "Teg qo'shish",
+  "viewers": "Ko'radiganlar"
 }

@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import Select from "@/components/ui/Select";
 import {
+  getMineOptions,
   getPriorityOptions,
   getStatusOptions,
-  getTaskPrioritySelectOptions,
 } from "@/constants/taskOptions";
 import type { TaskFilters } from "@/types/task";
 
@@ -24,7 +24,7 @@ function TaskFilters({ filters, onChange, setOpen }: Props) {
 
   const statusOptions = getStatusOptions(t);
   const priorityOptions = getPriorityOptions(t);
-  const mineOptions = getTaskPrioritySelectOptions(t);
+  const mineOptions = getMineOptions(t);
 
   return (
     <div className="mb-6">

@@ -18,8 +18,10 @@ import {
   type CreateTaskFormData,
   createTaskSchema,
 } from "@/features/task/task.schema";
+import { useUsers } from "@/features/user/hooks/useUsers";
 import getError from "@/utils/getError";
 
+import type { Option } from "../ui/CreatableSelect";
 import FormField from "../ui/FormField";
 import Textarea from "../ui/Textarea";
 
@@ -31,6 +33,7 @@ interface Props {
 
 export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
   const { create, loading } = useCreateTask();
+  const { data: users } = useUsers();
   const { t } = useTranslation("tasks");
   const { t: tCommon } = useTranslation("common");
 
@@ -39,6 +42,7 @@ export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
     handleSubmit,
     reset,
     control,
+    watch,
     formState: { errors },
   } = useForm<CreateTaskFormData>({
     resolver: zodResolver(createTaskSchema),
@@ -47,8 +51,11 @@ export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
       status: "TODO",
       priority: "LOW",
       visibility: "ANYONE",
+      viewerUserIds: [],
     },
   });
+
+  const visibility = watch("visibility");
 
   const onSubmit = async (data: CreateTaskFormData) => {
     try {
@@ -156,6 +163,25 @@ export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
             )}
           />
         </div>
+
+        {visibility === "LIST" && (
+          <Controller
+            name="viewerUserIds"
+            control={control}
+            render={({ field }) => (
+              <FormField id="viewerUserIds" label={t("viewers")}>
+                <Select
+                  isMulti
+                  options={users}
+                  value={users.filter((u) => field.value?.includes(u.value))}
+                  onChange={(selected) => {
+                    field.onChange(selected.map((s: Option) => s.value));
+                  }}
+                />
+              </FormField>
+            )}
+          />
+        )}
 
         <div className="flex justify-end gap-2">
           <Button

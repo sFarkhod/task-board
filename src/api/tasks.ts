@@ -1,5 +1,5 @@
 import { api } from "@/api/axios";
-import type { Task, TaskFilters,TaskListResponse } from "@/types/task";
+import type { Task, TaskFilters, TaskListResponse } from "@/types/task";
 
 export const getTasks = (params?: TaskFilters) =>
   api.get<TaskListResponse>("/tasks", { params });
@@ -10,10 +10,9 @@ export const createTask = (data: Partial<Task>) =>
   api.post<Task>("/tasks", data);
 
 export const updateTask = (id: string, data: Partial<Task>) =>
-  api.put(`/tasks/${id}`, { data });
+  api.put(`/tasks/${id}`, data);
 
-export const removeTask = (id: string) =>
-  api.delete(`/tasks/${id}`);
+export const removeTask = (id: string) => api.delete(`/tasks/${id}`);
 
 export const updateTaskStatus = (id: string, status: Task["status"]) =>
   api.patch(`/tasks/${id}/assignee-status`, { status });

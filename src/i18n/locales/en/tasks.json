@@ -29,5 +29,8 @@
   "onlyMe": "Only Me",
   "list": "List",
   "anyone": "Anyone",
-  "titleRequired": "Title is required"
+  "titleRequired": "Title is required",
+  "saveChanges": "Save Changes",
+  "addTag": "Add Tag",
+  "viewers": "Viewers"
 }
