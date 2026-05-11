@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/store/authStore";
 
 import Button from "./Button";
+import UserAvatar from "./UserAvatar";
 
 export default function UserMenu({ t }: { t: (key: string) => string }) {
   const user = useAuthStore((s) => s.user);
@@ -13,8 +14,6 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
-  const firstLetter = user?.nickname.charAt(0).toUpperCase();
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -40,9 +39,10 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
         onClick={() => setOpen((prev) => !prev)}
         className="flex items-center gap-2 cursor-pointer"
       >
-        <div className="h-9 w-9 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
-          {firstLetter}
-        </div>
+        <UserAvatar
+          name={user?.nickname || ""}
+          size={36}
+        />
 
         <span className="max-w-30 truncate text-sm text-gray-700">
           {user?.nickname}

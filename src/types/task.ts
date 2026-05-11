@@ -55,7 +55,7 @@ export type TaskFilters = {
 
   q?: string;
 
-  tag?: string[];
+  tag?: string;
 
   sort?: string;
   order?: "asc" | "desc";

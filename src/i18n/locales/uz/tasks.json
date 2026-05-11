@@ -32,5 +32,16 @@
   "titleRequired": "Nom kerak",
   "saveChanges": "O'zgartirish",
   "addTag": "Teg qo'shish",
-  "viewers": "Ko'radiganlar"
+  "viewers": "Ko'radiganlar",
+  "filter": "Filtr",
+  "filterTasks": "Vazifalarni filtrlash",
+  "sortBy": "Tartib bo'yicha",
+  "order": "Tartib",
+  "reset": "Qayta o'rnatish",
+  "apply": "Qo'llash",
+  "createdAt": "Yaratilgan",
+  "updatedAt": "Yangilangan",
+  "ascending": "O'sish",
+  "descending": "Kamayish",
+  "close": "Yopish"
 }

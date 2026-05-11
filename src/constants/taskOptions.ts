@@ -21,6 +21,17 @@ export const getMineOptions = (t: TFunction) => [
   { label: t("involved"), value: "involved" },
 ];
 
+export const getSortOptions = (t: TFunction) => [
+  { label: t("createdAt"), value: "createdAt" },
+  { label: t("updatedAt"), value: "updatedAt" },
+  { label: t("title"), value: "title" },
+];
+
+export const getOrderOptions = (t: TFunction) => [
+  { label: t("ascending"), value: "asc" },
+  { label: t("descending"), value: "desc" },
+];
+
 export const getTaskStatusSelectOptions = (t: TFunction) => [
   { label: t("todo"), value: "TODO" },
   { label: t("inProgress"), value: "IN_PROGRESS" },

@@ -1,5 +1,4 @@
 import {
-  addTaskTag,
   approveAssignment,
   assignTask,
   createTask,
@@ -7,7 +6,6 @@ import {
   getTasks,
   rejectAssignment,
   removeTask,
-  removeTaskTag,
   updateTask,
   updateTaskStatus,
 } from "@/api/tasks";
@@ -65,15 +63,4 @@ export const approveAssignmentService = async (id: string) => {
 //! REJECT ASSIGNMENT
 export const rejectAssignmentService = async (id: string, comment: string) => {
   return await rejectAssignment(id, comment);
-};
-
-//! TAG ADD
-export const addTaskTagService = async (id: string, name: string) => {
-  const result = await addTaskTag(id, name);
-  return mapTask(result.data);
-};
-
-//! TAG REMOVE
-export const removeTaskTagService = async (id: string, tagId: string) => {
-  return await removeTaskTag(id, tagId);
 };

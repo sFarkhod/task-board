@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { getApiErrorMessage } from "@/api/handleApiError";
@@ -10,39 +10,69 @@ export function useTasks(initialFilters?: TaskFilters) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const [filters, setFilters] = useState<TaskFilters>(initialFilters || {});
+  const [filters, setFilters] = useState<TaskFilters>({
+    page: 1,
+    pageSize: 5,
+    ...(initialFilters || {}),
+  });
 
-  useEffect(() => {
-    const loadTasks = async () => {
+  const [hasMore, setHasMore] = useState(true);
+
+  const loadTasks = useCallback(
+    async (currentFilters: TaskFilters, append = false) => {
       try {
         setLoading(true);
-        const result = await fetchTasks(filters);
-        setTasks(result.items);
+
+        const result = await fetchTasks(currentFilters);
+
+        setTasks((prev) => {
+          const updated = append ? [...prev, ...result.items] : result.items;
+
+          setHasMore(updated.length < result.total);
+
+          return updated;
+        });
       } catch (err) {
         toast.error(getApiErrorMessage(err));
       } finally {
         setLoading(false);
       }
-    };
-    loadTasks();
-  }, [filters]);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadTasks(filters, filters.page !== 1);
+  }, [filters, loadTasks]);
+
+  const loadMore = useCallback(() => {
+    if (loading || !hasMore) return;
+
+    setFilters((prev) => ({
+      ...prev,
+      page: (prev.page || 1) + 1,
+    }));
+  }, [loading, hasMore]);
 
   const refetch = async () => {
-    try {
-      setLoading(true);
-      const result = await fetchTasks(filters);
-      setTasks(result.items);
-    } catch (err) {
-      toast.error(getApiErrorMessage(err));
-    } finally {
-      setLoading(false);
-    }
+    const resetFilters = {
+      ...filters,
+      page: 1,
+    };
+
+    setFilters(resetFilters);
+
+    await loadTasks(resetFilters, false);
   };
 
   const updateFilters = (newFilters: Partial<TaskFilters>) => {
+    setTasks([]);
+
     setFilters((prev) => ({
       ...prev,
       ...newFilters,
+      page: 1,
     }));
   };
 
@@ -52,5 +82,7 @@ export function useTasks(initialFilters?: TaskFilters) {
     filters,
     setFilters: updateFilters,
     refetch,
+    loadMore,
+    hasMore,
   };
 }

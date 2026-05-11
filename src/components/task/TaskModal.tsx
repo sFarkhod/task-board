@@ -208,7 +208,7 @@ export default function TaskModal({
           onTaskChange={setLocalTask}
           refetchTasks={refetchTasks}
         />
-        <div className="flex items-center gap-x-4 pt-4 border-t border-pureSilicon">
+        <div className="flex items-center gap-x-4 pt-4">
           <Button
             variant="danger"
             onClick={handleDelete}

@@ -5,7 +5,7 @@ import Spinner from "./Spinner";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "primary" | "secondary" | "danger" | "default";
 }
 
 export default function Button({
@@ -24,6 +24,7 @@ export default function Button({
         variant === "primary" && "bg-blue-500 text-white hover:bg-blue-600",
         variant === "secondary" && "bg-gray-200 text-black hover:bg-gray-300",
         variant === "danger" && "bg-red-500 text-white hover:bg-red-600",
+        variant === "default" && "bg-white text-black",
         loading && "opacity-50 cursor-not-allowed",
         className,
       )}

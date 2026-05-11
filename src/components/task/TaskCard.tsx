@@ -1,25 +1,45 @@
+import { toast } from "react-toastify";
+
+import { getApiErrorMessage } from "@/api/handleApiError";
+import {
+  priorityColors,
+  statusColors,
+  taskPriorityTranslationKey,
+  taskStatusTranslationKey,
+} from "@/constants/statusConfig";
+import { useAssignTask } from "@/features/task/hooks/useAssignTask";
 import type { Task } from "@/types/task";
 
 import Card from "../ui/Card";
+import AssigneeSelect from "./AssigneeSelect";
 
 interface Props {
   task: Task;
+  users: { label: string; value: string }[];
   onClick?: () => void;
+  refetchTasks?: () => void;
+  t: (key: string) => string;
 }
 
-const priorityColors = {
-  LOW: "bg-green-100 text-green-700",
-  MEDIUM: "bg-yellow-100 text-yellow-700",
-  HIGH: "bg-red-100 text-red-700",
-};
+export default function TaskCard({
+  task,
+  users,
+  onClick,
+  refetchTasks,
+  t,
+}: Props) {
+  const { assign } = useAssignTask();
 
-const statusColors = {
-  TODO: "bg-gray-100 text-gray-700",
-  IN_PROGRESS: "bg-blue-100 text-blue-700",
-  DONE: "bg-purple-100 text-purple-700",
-};
+  const handleAssign = async (userId: string | null) => {
+    try {
+      await assign(task.id, userId || "");
 
-export default function TaskCard({ task, onClick }: Props) {
+      refetchTasks?.();
+    } catch (err) {
+      toast.error(getApiErrorMessage(err));
+    }
+  };
+
   return (
     <Card
       onClick={onClick}
@@ -41,7 +61,7 @@ export default function TaskCard({ task, onClick }: Props) {
             statusColors[task.status]
           }`}
         >
-          {task.status}
+          {t(taskStatusTranslationKey[task.status])}
         </span>
       </div>
 
@@ -59,18 +79,20 @@ export default function TaskCard({ task, onClick }: Props) {
       )}
 
       <div className="flex items-center justify-between mt-4">
-        {/* Priority */}
         <span
           className={`text-xs px-2 py-1 rounded-full ${
             priorityColors[task.priority]
           }`}
         >
-          {task.priority}
+          {t(taskPriorityTranslationKey[task.priority])}
         </span>
 
-        {/* Assignee */}
-        <div className="text-xs text-gray-500 truncate max-w-32">
-          {task.assignee ? `@${task.assignee.nickname}` : "Unassigned"}
+        <div onClick={(e) => e.stopPropagation()}>
+          <AssigneeSelect
+            users={users}
+            value={task.assignee?.id}
+            onChange={handleAssign}
+          />
         </div>
       </div>
     </Card>

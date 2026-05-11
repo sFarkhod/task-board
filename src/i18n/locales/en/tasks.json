@@ -32,5 +32,16 @@
   "titleRequired": "Title is required",
   "saveChanges": "Save Changes",
   "addTag": "Add Tag",
-  "viewers": "Viewers"
+  "viewers": "Viewers",
+  "filter": "Filter",
+  "filterTasks": "Filter Tasks",
+  "sortBy": "Sort by",
+  "order": "Order",
+  "reset": "Reset",
+  "apply": "Apply",
+  "createdAt": "Created At",
+  "updatedAt": "Updated At",
+  "ascending": "Ascending",
+  "descending": "Descending",
+  "close": "Close"
 }

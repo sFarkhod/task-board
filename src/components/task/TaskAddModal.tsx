@@ -19,6 +19,7 @@ import {
   createTaskSchema,
 } from "@/features/task/task.schema";
 import { useUsers } from "@/features/user/hooks/useUsers";
+import { useAuthStore } from "@/store/authStore";
 import getError from "@/utils/getError";
 
 import type { Option } from "../ui/CreatableSelect";
@@ -32,10 +33,19 @@ interface Props {
 }
 
 export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
+  const user = useAuthStore((s) => s.user);
+
   const { create, loading } = useCreateTask();
   const { data: users } = useUsers();
   const { t } = useTranslation("tasks");
   const { t: tCommon } = useTranslation("common");
+
+  const userOptions = users
+    .filter((u) => u.value !== user?.id)
+    .map((user) => ({
+      label: user.label,
+      value: user.value,
+    }));
 
   const {
     register,
@@ -172,8 +182,8 @@ export default function TaskAddModal({ open, onClose, onSuccess }: Props) {
               <FormField id="viewerUserIds" label={t("viewers")}>
                 <Select
                   isMulti
-                  options={users}
-                  value={users.filter((u) => field.value?.includes(u.value))}
+                  options={userOptions}
+                  value={userOptions.filter((u) => field.value?.includes(u.value))}
                   onChange={(selected) => {
                     field.onChange(selected.map((s: Option) => s.value));
                   }}

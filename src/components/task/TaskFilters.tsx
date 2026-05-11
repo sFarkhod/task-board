@@ -1,17 +1,12 @@
 import { Plus } from "lucide-react";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import Select from "@/components/ui/Select";
-import {
-  getMineOptions,
-  getPriorityOptions,
-  getStatusOptions,
-} from "@/constants/taskOptions";
 import type { TaskFilters } from "@/types/task";
 
 import Button from "../ui/Button";
 import SearchInput from "../ui/SearchInput";
+import TaskFilterModal from "./TaskFilterModal";
 
 interface Props {
   filters: TaskFilters;
@@ -22,19 +17,26 @@ interface Props {
 function TaskFilters({ filters, onChange, setOpen }: Props) {
   const { t } = useTranslation("tasks");
 
-  const statusOptions = getStatusOptions(t);
-  const priorityOptions = getPriorityOptions(t);
-  const mineOptions = getMineOptions(t);
+  const [filterOpen, setFilterOpen] = useState(false);
 
   return (
     <div className="mb-6">
-      <div className="flex justify-between items-center gap-x-4">
-        <SearchInput
-          placeholder={t("searchTasks")}
-          value={filters.q || ""}
-          onChange={(value) => onChange({ q: value })}
-          className="max-w-96"
-        />
+      <div className="flex justify-between lg:items-center items-start gap-x-4">
+        <div className="flex lg:flex-row gap-y-2 flex-col items-center gap-x-3">
+          <SearchInput
+            placeholder={t("searchTasks")}
+            value={filters.q || ""}
+            onChange={(value) => onChange({ q: value })}
+            className="w-full max-w-64 shrink-0"
+          />
+          <Button
+            variant="default"
+            className="px-10 border border-pureSilicon rounded-lg"
+            onClick={() => setFilterOpen(true)}
+          >
+            {t("filter")}
+          </Button>
+        </div>
         <Button
           variant="primary"
           className="max-w-40 flex items-center justify-center rounded-lg px-4"
@@ -45,43 +47,23 @@ function TaskFilters({ filters, onChange, setOpen }: Props) {
         </Button>
       </div>
 
-      <div className="mt-4 flex items-center space-x-4">
-        <Select
-          options={statusOptions}
-          value={statusOptions.find((o) => o.value === filters.status) || null}
-          onChange={(value) =>
-            onChange({
-              status: value?.value as TaskFilters["status"],
-            })
-          }
-          placeholder={t("status")}
-          isClearable
-        />
-        <Select
-          options={priorityOptions}
-          value={
-            priorityOptions.find((o) => o.value === filters.priority) || null
-          }
-          onChange={(value) =>
-            onChange({
-              priority: value?.value as TaskFilters["priority"],
-            })
-          }
-          placeholder={t("priority")}
-          isClearable
-        />
-        <Select
-          options={mineOptions}
-          value={mineOptions.find((o) => o.value === filters.mine) || null}
-          onChange={(value) =>
-            onChange({
-              mine: value?.value as TaskFilters["mine"],
-            })
-          }
-          placeholder={t("mine")}
-          isClearable
-        />
-      </div>
+      <TaskFilterModal
+        open={filterOpen}
+        onClose={() => setFilterOpen(false)}
+        filters={filters}
+        onChange={(f) => onChange(f)}
+        onReset={() =>
+          onChange({
+            status: undefined,
+            priority: undefined,
+            mine: undefined,
+            tag: "",
+            sort: "createdAt",
+            order: "desc",
+          })
+        }
+        t={t}
+      />
     </div>
   );
 }
