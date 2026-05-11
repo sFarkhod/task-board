@@ -1,8 +1,6 @@
 import { Check, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { getUser } from "@/utils/authUtil";
-
 import UserAvatar from "../ui/UserAvatar";
 
 interface UserOption {
@@ -13,12 +11,17 @@ interface UserOption {
 interface Props {
   users: UserOption[];
   value?: string;
+  currentUserId: string;
   onChange: (userId: string) => void;
 }
 
-export default function AssigneeSelect({ users, value, onChange }: Props) {
+export default function AssigneeSelect({
+  users,
+  value,
+  currentUserId,
+  onChange,
+}: Props) {
   const [open, setOpen] = useState(false);
-  const currentUserId = getUser()?.id || "";
   const sortedUsers = [...users].sort((a, b) => {
     if (a.value === currentUserId) return -1;
     if (b.value === currentUserId) return 1;

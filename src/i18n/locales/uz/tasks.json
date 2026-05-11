@@ -43,5 +43,9 @@
   "updatedAt": "Yangilangan",
   "ascending": "O'sish",
   "descending": "Kamayish",
-  "close": "Yopish"
+  "close": "Yopish",
+  "none": "Yo'q",
+  "pending": "Kutilmoqda",
+  "approved": "Tasdiqlangan",
+  "rejected": "Rad etilgan"
 }

@@ -43,5 +43,9 @@
   "updatedAt": "Обновлено",
   "ascending": "По возрастанию",
   "descending": "По убыванию",
-  "close": "Закрыть"
+  "close": "Закрыть",
+  "none": "Нет",
+  "pending": "Ожидает",
+  "approved": "Одобрено",
+  "rejected": "Отклонено"
 }

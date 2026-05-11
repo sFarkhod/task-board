@@ -1,3 +1,4 @@
+import { useDroppable } from "@dnd-kit/core";
 import clsx from "clsx";
 
 import { statusConfig } from "@/constants/statusConfig";
@@ -24,11 +25,17 @@ export default function BoardColumn({
   onTaskClick,
   t,
 }: Props) {
+  const { setNodeRef } = useDroppable({
+    id: status,
+  });
   const config =
     statusConfig[status as keyof typeof statusConfig] ?? statusConfig.todo;
   const StatusIcon = config.icon;
   return (
-    <div className="flex flex-col min-w-[20rem] bg-gray-200 rounded-lg shadow">
+    <div
+      ref={setNodeRef}
+      className="flex flex-col min-w-[20rem] bg-gray-200 rounded-lg shadow"
+    >
       <div className="flex items-center justify-between bg-gray-200 rounded-t-lg sticky -top-4 z-10 p-4">
         <span className="flex gap-x-2 items-center">
           <span

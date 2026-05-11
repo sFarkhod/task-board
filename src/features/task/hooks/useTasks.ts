@@ -12,7 +12,7 @@ export function useTasks(initialFilters?: TaskFilters) {
 
   const [filters, setFilters] = useState<TaskFilters>({
     page: 1,
-    pageSize: 5,
+    pageSize: 20,
     ...(initialFilters || {}),
   });
 

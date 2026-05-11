@@ -30,6 +30,12 @@ export const statusColors = {
   DONE: "bg-purple-100 text-purple-700",
 };
 
+export const statusToApiMap = {
+  todo: "TODO",
+  inProgress: "IN_PROGRESS",
+  done: "DONE",
+} as const;
+
 export const taskStatusTranslationKey = {
   TODO: "todo",
   IN_PROGRESS: "inProgress",
@@ -41,3 +47,10 @@ export const taskPriorityTranslationKey = {
   MEDIUM: "medium",
   HIGH: "high",
 } as const;
+
+export const assignmentStatusColors = {
+  NONE: "bg-gray-100 text-gray-600",
+  PENDING: "bg-yellow-100 text-yellow-700",
+  APPROVED: "bg-green-100 text-green-700",
+  REJECTED: "bg-red-100 text-red-700",
+};

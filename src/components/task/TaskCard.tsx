@@ -1,17 +1,27 @@
+import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+import clsx from "clsx";
 import { toast } from "react-toastify";
 
 import { getApiErrorMessage } from "@/api/handleApiError";
 import {
+  assignmentStatusColors,
   priorityColors,
   statusColors,
   taskPriorityTranslationKey,
   taskStatusTranslationKey,
 } from "@/constants/statusConfig";
+import { useApproveAssignment } from "@/features/task/hooks/useApproveAssignment";
 import { useAssignTask } from "@/features/task/hooks/useAssignTask";
+import { useRejectAssignment } from "@/features/task/hooks/useRejectAssignment";
 import type { Task } from "@/types/task";
+import { getUser } from "@/utils/authUtil";
+import { getAssignmentStatusLabel } from "@/utils/getAssignmentStatusLabel";
 
 import Card from "../ui/Card";
+import UserAvatar from "../ui/UserAvatar";
 import AssigneeSelect from "./AssigneeSelect";
+import AssignmentActions from "./AssignmentActions";
 
 interface Props {
   task: Task;
@@ -29,11 +39,40 @@ export default function TaskCard({
   t,
 }: Props) {
   const { assign } = useAssignTask();
+  const { approve, loading: approving } = useApproveAssignment();
+  const { reject, loading: rejecting } = useRejectAssignment();
+
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: task.id,
+    });
+
+  const currentUserId = getUser()?.id || "";
+
+  const isPendingForMe =
+    task.assignmentStatus === "PENDING" && task.assignee?.id === currentUserId;
 
   const handleAssign = async (userId: string | null) => {
     try {
       await assign(task.id, userId || "");
+      refetchTasks?.();
+    } catch (err) {
+      toast.error(getApiErrorMessage(err));
+    }
+  };
 
+  const handleApprove = async () => {
+    try {
+      await approve(task.id);
+      refetchTasks?.();
+    } catch (err) {
+      toast.error(getApiErrorMessage(err));
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      await reject(task.id, "Rejected");
       refetchTasks?.();
     } catch (err) {
       toast.error(getApiErrorMessage(err));
@@ -42,8 +81,17 @@ export default function TaskCard({
 
   return (
     <Card
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
       onClick={onClick}
-      className="shadow-sm hover:shadow-md transition cursor-pointer"
+      style={{
+        transform: CSS.Translate.toString(transform),
+      }}
+      className={clsx(
+        "shadow-sm hover:shadow-md cursor-pointer flex flex-col gap-3",
+        isDragging && "opacity-50",
+      )}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
@@ -66,7 +114,7 @@ export default function TaskCard({
       </div>
 
       {task.tags?.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap gap-2">
           {task.tags.map((tag) => (
             <span
               key={tag.id}
@@ -78,7 +126,7 @@ export default function TaskCard({
         </div>
       )}
 
-      <div className="flex items-center justify-between mt-4">
+      <div className="mt-2">
         <span
           className={`text-xs px-2 py-1 rounded-full ${
             priorityColors[task.priority]
@@ -86,15 +134,46 @@ export default function TaskCard({
         >
           {t(taskPriorityTranslationKey[task.priority])}
         </span>
-
-        <div onClick={(e) => e.stopPropagation()}>
-          <AssigneeSelect
-            users={users}
-            value={task.assignee?.id}
-            onChange={handleAssign}
-          />
-        </div>
       </div>
+
+      <div className="flex items-center justify-between mt-auto pt-2">
+        {task.assignmentStatus !== "NONE" && (
+          <span
+            className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${
+              assignmentStatusColors[task.assignmentStatus]
+            }`}
+          >
+            {getAssignmentStatusLabel(task.assignmentStatus, t)}
+          </span>
+        )}
+
+        {isPendingForMe ? (
+          <AssignmentActions
+            onApprove={handleApprove}
+            onReject={handleReject}
+            loading={approving || rejecting}
+          />
+        ) : (
+          <div onClick={(e) => e.stopPropagation()}>
+            <AssigneeSelect
+              users={users}
+              value={task.assignee?.id}
+              currentUserId={currentUserId}
+              onChange={handleAssign}
+            />
+          </div>
+        )}
+      </div>
+
+      {task.creator && (
+        <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
+          <UserAvatar name={task.creator.nickname} size={24} />
+          <span className="text-xs text-gray-500">
+            created by{" "}
+            <span className="font-medium">{task.creator.nickname}</span>
+          </span>
+        </div>
+      )}
     </Card>
   );
 }

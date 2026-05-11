@@ -43,5 +43,9 @@
   "updatedAt": "Updated At",
   "ascending": "Ascending",
   "descending": "Descending",
-  "close": "Close"
+  "close": "Close",
+  "none": "None",
+  "pending": "Pending",
+  "approved": "Approved",
+  "rejected": "Rejected"
 }
