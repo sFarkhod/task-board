@@ -1,4 +1,4 @@
-import { loginRequest, registerRequest } from "@/api/auth";
+import { changePassword, loginRequest, registerRequest } from "@/api/auth";
 
 import type { RegisterFormData } from "./schema";
 
@@ -16,3 +16,13 @@ export async function loginUser(data: { nickname: string; password: string }) {
   const result = await loginRequest(data);
   return result.data;
 }
+
+export const changePasswordService = async (
+  currentPassword: string,
+  newPassword: string,
+) => {
+  return await changePassword({
+    currentPassword,
+    newPassword,
+  });
+};

@@ -1,19 +1,22 @@
-import { LogOut } from "lucide-react";
+import { KeyRound, LogOut } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthStore } from "@/store/authStore";
 
+import ChangePasswordModal from "../auth/ChangePasswordModal";
 import Button from "./Button";
 import UserAvatar from "./UserAvatar";
 
-export default function UserMenu({ t }: { t: (key: string) => string }) {
+export default function UserMenu({ t, tAuth }: { t: (key: string) => string, tAuth: (key: string) => string }) {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
 
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -39,10 +42,7 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
         onClick={() => setOpen((prev) => !prev)}
         className="flex items-center gap-2 cursor-pointer"
       >
-        <UserAvatar
-          name={user?.nickname || ""}
-          size={36}
-        />
+        <UserAvatar name={user?.nickname || ""} size={36} />
 
         <span className="max-w-30 truncate text-sm text-gray-700">
           {user?.nickname}
@@ -71,6 +71,17 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
 
         <div className="border-t border-pureSilicon pt-3">
           <Button
+            onClick={() => {
+              setPasswordModalOpen(true);
+              setOpen(false);
+            }}
+            variant="secondary"
+            className="flex items-center justify-center cursor-pointer w-full gap-2 px-3 py-1.5 rounded-lg transition mb-2"
+          >
+            <KeyRound size={18} />
+            <span>{tAuth("changePassword")}</span>
+          </Button>
+          <Button
             onClick={handleLogout}
             variant="danger"
             className="flex items-center justify-center cursor-pointer w-full gap-2 px-3 py-1.5 rounded-lg transition"
@@ -79,6 +90,11 @@ export default function UserMenu({ t }: { t: (key: string) => string }) {
             <span>{t("logout")}</span>
           </Button>
         </div>
+        <ChangePasswordModal
+          open={passwordModalOpen}
+          onClose={() => setPasswordModalOpen(false)}
+          tAuth={tAuth}
+        />
       </div>
     </div>
   );

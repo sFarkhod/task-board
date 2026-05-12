@@ -12,6 +12,7 @@ interface Props {
 
 export default function Navbar({ onMenuClick }: Props) {
   const { t } = useTranslation("common");
+  const { t: tAuth } = useTranslation("auth");
   const pageTitle = useLayoutStore((state) => state.pageTitle);
 
   return (
@@ -23,7 +24,7 @@ export default function Navbar({ onMenuClick }: Props) {
 
       <div className="flex items-center gap-4">
         <LanguageSwitcher />
-        <UserMenu t={t} />
+        <UserMenu t={t} tAuth={tAuth}/>
       </div>
     </header>
   );
