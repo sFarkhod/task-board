@@ -1,75 +1,109 @@
-# React + TypeScript + Vite
+<h1 align="center">Task Board</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <b>Collaborative Kanban-style task management app</b><br/>
+  Built with React, TypeScript, Vite, Zustand, Tailwind CSS, and more.
+</p>
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
 
-## React Compiler
+[View Demo](https://staskboard.netlify.app)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Overview
 
-Note: This will impact Vite dev & build performances.
+Task Board is a modern, full-featured Kanban board for managing tasks, assignments, and collaboration. It supports user authentication, task assignment, tagging, blocking users, and multi-language support (English, Russian, Uzbek).
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- User authentication (register, login, change password)
+- Kanban board with drag-and-drop (dnd-kit)
+- Task creation, editing, filtering, and tagging
+- Assign tasks to users, approve/reject assignments
+- Block/unblock users
+- Multi-language UI (i18n)
+- Responsive design (mobile & desktop)
+- Toast notifications for feedback
+- Persistent state with Zustand
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Frontend:** React 19, TypeScript, Vite
+- **State Management:** Zustand
+- **Styling:** Tailwind CSS
+- **Forms & Validation:** React Hook Form, Zod
+- **Drag & Drop:** dnd-kit
+- **Routing:** React Router v7
+- **API:** Axios
+- **i18n:** react-i18next
+- **UI Components:** Custom + Lucide Icons
+- **Linting:** ESLint
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Folder Structure
+
+```
+src/
+  api/         # API request modules
+  assets/      # Static assets
+  components/  # Reusable UI and feature
+  constants/   # App-wide constants
+  features/    # Domain logic (auth, task, tag, block, user)
+  hooks/       # Custom React hooks
+  i18n/        # Internationalization config & translations
+  layouts/     # Layout components (Main, Auth)
+  mapper/      # Data mapping utilities
+  pages/       # Route pages (Board, Auth, BlockedUsers, etc.)
+  router/      # Routing setup & guards
+  store/       # Zustand stores
+  types/       # TypeScript types
+  utils/       # Utility functions
+public/
+  favicon.svg  # App icon
+index.html     # App entry point
+vite.config.ts # Vite config
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file in the root with:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+VITE_API_URL=<your-backend-api-url>
+```
+
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Set up environment variables
+
+Create a `.env` file as described above.
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+The app will be available at [http://localhost:5173](http://localhost:5173) by default.
+
+### 4. Build for production
+
+```bash
+npm run build
+```
+
+### 5. Preview production build
+
+```bash
+npm run preview
+```
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
