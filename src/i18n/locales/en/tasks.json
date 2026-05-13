@@ -48,5 +48,7 @@
   "pending": "Pending",
   "approved": "Approved",
   "rejected": "Rejected",
-  "createdBy": "created By"
+  "createdBy": "created By",
+  "approve": "Approve",
+  "reject": "Reject"
 }

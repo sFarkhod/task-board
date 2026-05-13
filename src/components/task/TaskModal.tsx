@@ -207,6 +207,7 @@ export default function TaskModal({
           task={localTask}
           onTaskChange={setLocalTask}
           refetchTasks={refetchTasks}
+          t={t}
         />
         <div className="flex items-center gap-x-4 pt-4">
           <Button

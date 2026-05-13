@@ -2,12 +2,14 @@ interface Props {
   onApprove: () => void;
   onReject: () => void;
   loading?: boolean;
+  t: (key: string) => string;
 }
 
 export default function AssignmentActions({
   onApprove,
   onReject,
   loading,
+  t
 }: Props) {
   return (
     <div className="flex items-center gap-2">
@@ -24,7 +26,7 @@ export default function AssignmentActions({
           hover:bg-green-200 cursor-pointer animate-pulse hover:animate-none
         "
       >
-        Approve
+        {t("approve")}
       </button>
 
       <button
@@ -40,7 +42,7 @@ export default function AssignmentActions({
           hover:bg-red-200 cursor-pointer animate-pulse hover:animate-none
         "
       >
-        Reject
+        {t("reject")}
       </button>
     </div>
   );

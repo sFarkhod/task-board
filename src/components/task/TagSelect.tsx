@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 import { getApiErrorMessage } from "@/api/handleApiError";
@@ -12,10 +11,15 @@ interface Props {
   task: Task;
   onTaskChange: (task: Task) => void;
   refetchTasks?: () => void;
+  t: (key: string) => string;
 }
 
-export default function TagSelect({ task, onTaskChange, refetchTasks }: Props) {
-  const { t } = useTranslation("tasks");
+export default function TagSelect({
+  task,
+  onTaskChange,
+  refetchTasks,
+  t,
+}: Props) {
   const { tags, setTags, loading } = useTags();
   const { addTag } = useAddTaskTag();
 
@@ -48,7 +52,7 @@ export default function TagSelect({ task, onTaskChange, refetchTasks }: Props) {
 
       if (updatedTask) {
         onTaskChange(updatedTask);
-        
+
         updatedTask.tags.forEach((tag) => {
           const exists = tags.some((t) => t.id === tag.id);
 

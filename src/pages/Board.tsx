@@ -90,7 +90,7 @@ export default function Board() {
         <div className="text-gray-500">{t("noTasksFound")}</div>
       ) : (
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <BoardColumn
               status="todo"
               title={t("todo")}

@@ -150,6 +150,7 @@ export default function TaskCard({
             onApprove={handleApprove}
             onReject={handleReject}
             loading={approving || rejecting}
+            t={t}
           />
         ) : (
           <div onClick={(e) => e.stopPropagation()}>

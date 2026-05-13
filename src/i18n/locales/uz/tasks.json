@@ -48,5 +48,7 @@
   "pending": "Kutilmoqda",
   "approved": "Tasdiqlangan",
   "rejected": "Rad etilgan",
-  "createdBy": "yaratilgan"
+  "createdBy": "yaratilgan",
+  "approve": "Tasdiqlash",
+  "reject": "Rad etish"
 }

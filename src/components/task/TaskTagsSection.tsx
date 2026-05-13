@@ -1,5 +1,4 @@
 import { X } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 import { getApiErrorMessage } from "@/api/handleApiError";
@@ -13,11 +12,15 @@ interface Props {
   task: Task;
   onTaskChange: (task: Task) => void;
   refetchTasks?: () => void;
+  t: (key: string) => string;
 }
 
-export default function TaskTagsSection({ task, onTaskChange, refetchTasks }: Props) {
-  const { t } = useTranslation("tasks");
-
+export default function TaskTagsSection({
+  task,
+  onTaskChange,
+  refetchTasks,
+  t,
+}: Props) {
   const { removeTag } = useRemoveTaskTag();
 
   const handleRemoveTag = async (tagId: string) => {
@@ -30,7 +33,7 @@ export default function TaskTagsSection({ task, onTaskChange, refetchTasks }: Pr
     } catch (err) {
       toast.error(getApiErrorMessage(err));
     } finally {
-        refetchTasks?.();
+      refetchTasks?.();
     }
   };
 
@@ -62,7 +65,12 @@ export default function TaskTagsSection({ task, onTaskChange, refetchTasks }: Pr
         ))}
       </div>
       <FormField id="addTag" label={t("addTag")}>
-        <TagSelect task={task} onTaskChange={onTaskChange} refetchTasks={refetchTasks} />
+        <TagSelect
+          task={task}
+          onTaskChange={onTaskChange}
+          refetchTasks={refetchTasks}
+          t={t}
+        />
       </FormField>
     </div>
   );

@@ -48,5 +48,7 @@
   "pending": "Ожидает",
   "approved": "Одобрено",
   "rejected": "Отклонено",
-  "createdBy": "создано"
+  "createdBy": "создано",
+  "approve": "Одобрить",
+  "reject": "Отклонить"
 }

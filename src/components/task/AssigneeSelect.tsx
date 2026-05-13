@@ -29,9 +29,6 @@ export default function AssigneeSelect({
     return a.label.localeCompare(b.label);
   });
 
-  console.log("sortedUsers", sortedUsers);
-  console.log("value", value);
-
   const containerRef = useRef<HTMLDivElement>(null);
 
   const selectedUser = sortedUsers.find((u) => u.value === value);
