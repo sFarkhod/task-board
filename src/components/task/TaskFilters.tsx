@@ -1,7 +1,8 @@
 import { Plus } from "lucide-react";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useDebounce } from "@/hooks/useDebounce";
 import type { TaskFilters } from "@/types/task";
 
 import Button from "../ui/Button";
@@ -18,6 +19,13 @@ function TaskFilters({ filters, onChange, setOpen }: Props) {
   const { t } = useTranslation("tasks");
 
   const [filterOpen, setFilterOpen] = useState(false);
+  const [search, setSearch] = useState(filters.q || "");
+
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    onChange({ q: debouncedSearch });
+  }, [debouncedSearch]);
 
   return (
     <div className="mb-6">
@@ -25,8 +33,8 @@ function TaskFilters({ filters, onChange, setOpen }: Props) {
         <div className="flex lg:flex-row gap-y-2 flex-col items-center gap-x-3">
           <SearchInput
             placeholder={t("searchTasks")}
-            value={filters.q || ""}
-            onChange={(value) => onChange({ q: value })}
+            value={search}
+            onChange={setSearch}
             className="w-full max-w-64 shrink-0"
           />
           <Button

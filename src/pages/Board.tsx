@@ -24,8 +24,8 @@ import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function Board() {
   usePageTitle("board");
-  const { t } = useTranslation("tasks");
 
+  const { t } = useTranslation("tasks");
   const { tasks, loading, filters, setFilters, refetch, loadMore, hasMore } =
     useTasks();
   const { data: users } = useUsers();
@@ -36,6 +36,12 @@ export default function Board() {
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const groupedTasks = {
+    TODO: tasks.filter((t) => t.status === "TODO"),
+    IN_PROGRESS: tasks.filter((t) => t.status === "IN_PROGRESS"),
+    DONE: tasks.filter((t) => t.status === "DONE"),
+  };
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -43,12 +49,6 @@ export default function Board() {
       },
     }),
   );
-
-  const groupedTasks = {
-    TODO: tasks.filter((t) => t.status === "TODO"),
-    IN_PROGRESS: tasks.filter((t) => t.status === "IN_PROGRESS"),
-    DONE: tasks.filter((t) => t.status === "DONE"),
-  };
 
   useEffect(() => {
     if (!inView) return;

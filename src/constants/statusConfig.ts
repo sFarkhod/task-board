@@ -13,8 +13,8 @@ export const statusConfig = {
   },
   done: {
     icon: CheckCircle2,
-    color: "text-green-600",
-    bgColor: "bg-green-100",
+    color: "text-purple-700",
+    bgColor: "bg-purple-100",
   },
 };
 

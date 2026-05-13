@@ -60,7 +60,6 @@ export default function TaskCard({
       toast.error(getApiErrorMessage(err));
     }
   };
-
   const handleApprove = async () => {
     try {
       await approve(task.id);
@@ -69,7 +68,6 @@ export default function TaskCard({
       toast.error(getApiErrorMessage(err));
     }
   };
-
   const handleReject = async () => {
     try {
       await reject(task.id, "Rejected");
@@ -169,7 +167,7 @@ export default function TaskCard({
         <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
           <UserAvatar name={task.creator.nickname} size={24} />
           <span className="text-xs text-gray-500">
-            created by{" "}
+            {t("createdBy")}{" "}
             <span className="font-medium">{task.creator.nickname}</span>
           </span>
         </div>
